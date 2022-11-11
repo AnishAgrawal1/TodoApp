@@ -5,17 +5,17 @@ import Todo from "./components/Todo";
 import { nanoid } from "nanoid";
 
 
-// const FILTER_MAP = {
-//   All: () => true,
-//   Active: task => !task.completed,
-//   Completed: task => task.completed
-// };
+const ToggleMap = {
+  All: () => true,
+  Active: task => !task.completed,
+  Completed: task => task.completed
+};
 
-// const FILTER_NAMES = Object.keys(FILTER_MAP);
+const ToggleNames = Object.keys(ToggleMap);
 
 function App(props) {
   const [tasks, setTasks] = useState(props.tasks);
-  // const [filter, setFilter] = useState('All');
+  const [filter, setFilter] = useState('All');
 
   function toggleTaskCompleted(id) {
     const updatedTasks = tasks.map(task => {
@@ -33,9 +33,8 @@ function App(props) {
     setTasks(remainingTasks);
   }
 
-
   const taskList = tasks
-  // .filter(FILTER_MAP[filter])
+  .filter(ToggleMap[filter])
   .map(task => (
     <Todo
       id={task.id}
@@ -47,14 +46,14 @@ function App(props) {
     />
   ));
 
-  // const filterList = FILTER_NAMES.map(name => (
-  //   <ToggleButton
-  //     key={name}
-  //     name={name}
-  //     isPressed={name === filter}
-  //     setFilter={setFilter}
-  //   />
-  // ));
+  const filterList = ToggleNames.map(name => (
+    <ToggleButton
+      key={name}
+      name={name}
+      isPressed={name === filter}
+      setFilter={setFilter}
+    />
+  ));
 
   function addTask(name) {
     const newTask = { id:nanoid(), name: name, completed: false };
@@ -65,16 +64,16 @@ function App(props) {
 
   return (
     <div>
-      <Form addTask={addTask} />
-      {/* <div className="filters btn-group stack-exception">
+      <Form className="justify-center" addTask={addTask} />
+      <div className="">
         {filterList}
-      </div> */}
+      </div>
       <h2>
         Tasks Remaining
       </h2>
       <ul
         role="list"
-        className="todo-list stack-large stack-exception"
+        className=""
       >
         {taskList}
       </ul>

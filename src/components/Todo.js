@@ -4,7 +4,7 @@ import React from "react";
 const Todo = (props) =>{
   return(
     <div className="">
-      <div className="c-cb">
+      <div className="">
           <input
             id={props.id}
             type="checkbox"
@@ -19,7 +19,7 @@ const Todo = (props) =>{
             className="btn btn__danger"
             onClick={() => props.deleteTask(props.id)}
           >
-            Delete <span className="visually-hidden">{props.name}</span>
+            Delete
           </button>
         </div>
     </div>
